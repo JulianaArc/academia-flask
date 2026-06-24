@@ -1,0 +1,100 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Exercícios
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Exercícios
+    </h1>
+
+    <p>
+        Gerencie os exercícios cadastrados
+    </p>
+
+</div>
+
+<div class="top">
+
+    <a
+        href="/dashboard-admin"
+        class="btn"
+    >
+        ← Voltar
+    </a>
+
+    <a
+        href="/cadastrar-exercicio"
+        class="btn"
+    >
+        + Novo Exercício
+    </a>
+
+</div>
+
+{% for exercicio in exercicios %}
+
+<div class="card">
+
+    <h2>
+        {{ exercicio.nome }}
+    </h2>
+
+    <div class="info">
+
+        <p>
+            <strong>Grupo muscular:</strong>
+            {{ exercicio.grupo_muscular }}
+        </p>
+
+        <p>
+            <strong>Descrição:</strong>
+            {{ exercicio.descricao }}
+        </p>
+
+        <p>
+            <strong>Peso padrão:</strong>
+            {{ exercicio.peso_padrao }} kg
+        </p>
+
+        <p>
+            <strong>Séries:</strong>
+            {{ exercicio.series_padrao }}
+        </p>
+
+        <p>
+            <strong>Repetições:</strong>
+            {{ exercicio.repeticoes_padrao }}
+        </p>
+
+    </div>
+
+    <div class="actions">
+
+        <a
+            href="/editar-exercicio/{{ exercicio.id }}"
+            class="btn edit"
+        >
+            Editar
+        </a>
+
+        <a
+            href="/deletar-exercicio/{{ exercicio.id }}"
+            class="btn delete"
+        >
+            Excluir
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+

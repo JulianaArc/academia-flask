@@ -1,0 +1,126 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Gestão de Alunos
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Gestão de Alunos
+    </h1>
+
+    <p>
+        Cadastros, matrículas e acompanhamento dos alunos
+    </p>
+
+</div>
+
+<div class="grid">
+
+    <div class="dashboard-card">
+
+        <h2>
+            Cadastrar Aluno
+        </h2>
+
+        <p>
+            Adicionar um novo aluno ao sistema
+        </p>
+
+        <a
+        href="/cadastrar-aluno"
+        class="btn">
+
+            Abrir
+
+        </a>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h2>
+            Listar Alunos
+        </h2>
+
+        <p>
+            Consultar e editar alunos cadastrados
+        </p>
+
+        <a
+        href="/listar-alunos"
+        class="btn">
+
+            Abrir
+
+        </a>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h2>
+            Financeiro
+        </h2>
+
+        <p>
+            Pagamentos, vencimentos e mensalidades
+        </p>
+
+        <a
+        href="/pagamentos"
+        class="btn">
+
+            Abrir
+
+        </a>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h2>
+            Relatórios
+        </h2>
+
+        <p>
+            Estatísticas e informações dos alunos
+        </p>
+
+        <a
+        href="#"
+        class="btn">
+
+            Em breve
+
+        </a>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h2>
+            Voltar
+        </h2>
+
+        <p>
+            Retornar ao painel administrativo
+        </p>
+
+        <a
+        href="/dashboard-admin"
+        class="btn">
+
+            Voltar
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

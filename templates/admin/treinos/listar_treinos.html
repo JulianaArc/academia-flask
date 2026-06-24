@@ -1,0 +1,133 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Treinos Modelo
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>Treinos Modelo</h1>
+
+    <p>
+        Gerencie os treinos padrão da academia
+    </p>
+
+</div>
+
+<div class="card">
+
+    <div class="top">
+
+        <a
+        href="/dashboard-admin"
+        class="btn">
+
+            ← Voltar
+
+        </a>
+
+        <a
+        href="/criar-treino"
+        class="btn">
+
+            + Novo Treino
+
+        </a>
+
+    </div>
+
+</div>
+
+{% if treinos|length == 0 %}
+
+<div class="card">
+
+    <h2>
+        Nenhum treino cadastrado
+    </h2>
+
+    <p class="info">
+
+        Crie o primeiro treino modelo da academia.
+
+    </p>
+
+    <br>
+
+    <a
+    href="/criar-treino"
+    class="btn">
+
+        Criar Primeiro Treino
+
+    </a>
+
+</div>
+
+{% endif %}
+
+{% for treino in treinos %}
+
+<div class="card">
+
+    <div class="top">
+
+        <div>
+
+            <h2>
+                {{ treino.nome }}
+            </h2>
+
+            <p class="info">
+
+                {{ treino.descricao }}
+
+            </p>
+
+        </div>
+
+        <span class="status-ativo">
+
+            {{ treino.itens|length }}
+            Exercícios
+
+        </span>
+
+    </div>
+
+    <div class="actions">
+
+        <a
+        href="/visualizar-treino/{{ treino.id }}"
+        class="btn">
+
+            Visualizar
+
+        </a>
+
+        <a
+        href="/editar-treino/{{ treino.id }}"
+        class="btn edit">
+
+            Editar
+
+        </a>
+
+        <a
+        href="/deletar-treino/{{ treino.id }}"
+        class="btn delete">
+
+            Excluir
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
+

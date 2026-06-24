@@ -1,0 +1,81 @@
+{% extends 'base/base_aluno.html' %}
+
+{% block title %}
+Treinos da Academia
+{% endblock %}
+
+{% block content %}
+<div class="topbar">
+    <h1>Treinos da Academia</h1>
+    <p>Escolha um treino criado pelos instrutores</p>
+</div>
+
+<div class="page-actions">
+    <a href="/dashboard-aluno" class="btn-secondary">
+        ← Voltar ao Dashboard
+    </a>
+</div>
+
+{% if treinos|length == 0 %}
+    <div class="card">
+        <h2>Nenhum treino disponível</h2>
+        <p class="info">A academia ainda não cadastrou treinos.</p>
+    </div>
+{% endif %}
+
+{% for treino in treinos %}
+    <div class="card treino-card">
+        <h2>{{ treino.nome }}</h2>
+        <p class="info">{{ treino.descricao }}</p>
+
+        <br>
+
+        <h3>Exercícios do Treino</h3>
+
+        <div class="checkbox-container">
+            {% for item in treino.itens %}
+                <div class="exercise-item">
+                    <h4>{{ item.exercicio.nome }}</h4>
+
+                    <p><strong>Grupo:</strong> {{ item.exercicio.grupo_muscular }}</p>
+                    <p><strong>Séries:</strong> {{ item.exercicio.series_padrao }}</p>
+                    <p><strong>Repetições:</strong> {{ item.exercicio.repeticoes_padrao }}</p>
+                    <p><strong>Peso:</strong> {{ item.exercicio.peso_padrao }} kg</p>
+                </div>
+            {% endfor %}
+        </div>
+
+<div class="actions">
+
+    {% if treino.nome in ids_adicionados %}
+
+        <span class="btn-success">
+
+            ✓ Já adicionado
+
+        </span>
+
+    {% else %}
+
+        <a
+        href="/adicionar-treino/{{ treino.id }}"
+        class="btn">
+
+            + Adicionar aos meus treinos
+
+        </a>
+
+    {% endif %}
+
+</div>
+
+</div>
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+
+
+

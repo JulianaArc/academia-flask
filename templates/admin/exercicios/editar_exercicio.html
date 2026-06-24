@@ -1,0 +1,184 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Editar Exercício
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Editar Exercício
+    </h1>
+
+    <p>
+        Atualize as informações do exercício
+    </p>
+
+</div>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <label>
+            Nome do Exercício
+        </label>
+
+        <input
+            type="text"
+            name="nome"
+            value="{{ exercicio.nome }}"
+            required
+        >
+
+        <label>
+            Grupo Muscular
+        </label>
+
+        <select
+            name="grupo_muscular"
+            required
+        >
+
+            <option value="Peitoral"
+            {% if exercicio.grupo_muscular == 'Peitoral' %}
+            selected
+            {% endif %}>
+            Peitoral
+            </option>
+
+            <option value="Costas"
+            {% if exercicio.grupo_muscular == 'Costas' %}
+            selected
+            {% endif %}>
+            Costas
+            </option>
+
+            <option value="Bíceps"
+            {% if exercicio.grupo_muscular == 'Bíceps' %}
+            selected
+            {% endif %}>
+            Bíceps
+            </option>
+
+            <option value="Tríceps"
+            {% if exercicio.grupo_muscular == 'Tríceps' %}
+            selected
+            {% endif %}>
+            Tríceps
+            </option>
+
+            <option value="Ombro"
+            {% if exercicio.grupo_muscular == 'Ombro' %}
+            selected
+            {% endif %}>
+            Ombro
+            </option>
+
+            <option value="Quadríceps"
+            {% if exercicio.grupo_muscular == 'Quadríceps' %}
+            selected
+            {% endif %}>
+            Quadríceps
+            </option>
+
+            <option value="Posterior"
+            {% if exercicio.grupo_muscular == 'Posterior' %}
+            selected
+            {% endif %}>
+            Posterior
+            </option>
+
+            <option value="Panturrilha"
+            {% if exercicio.grupo_muscular == 'Panturrilha' %}
+            selected
+            {% endif %}>
+            Panturrilha
+            </option>
+
+            <option value="Abdômen"
+            {% if exercicio.grupo_muscular == 'Abdômen' %}
+            selected
+            {% endif %}>
+            Abdômen
+            </option>
+
+            <option value="Glúteo"
+            {% if exercicio.grupo_muscular == 'Glúteo' %}
+            selected
+            {% endif %}>
+            Glúteo
+            </option>
+
+        </select>
+
+        <label>
+            Descrição
+        </label>
+
+        <textarea
+            name="descricao"
+            required
+        >{{ exercicio.descricao }}</textarea>
+
+        <label>
+            Peso Padrão (kg)
+        </label>
+
+        <input
+            type="number"
+            step="0.1"
+            min="0"
+            name="peso_padrao"
+            value="{{ exercicio.peso_padrao }}"
+            required
+        >
+
+        <label>
+            Séries Padrão
+        </label>
+
+        <input
+            type="number"
+            min="1"
+            name="series_padrao"
+            value="{{ exercicio.series_padrao }}"
+            required
+        >
+
+        <label>
+            Repetições Padrão
+        </label>
+
+        <input
+            type="number"
+            min="1"
+            name="repeticoes_padrao"
+            value="{{ exercicio.repeticoes_padrao }}"
+            required
+        >
+
+        <button type="submit">
+
+            Salvar Alterações
+
+        </button>
+
+    </form>
+
+    <a
+        href="/exercicios"
+        class="voltar"
+    >
+
+        Cancelar
+
+    </a>
+
+</div>
+
+{% endblock %}
+
+

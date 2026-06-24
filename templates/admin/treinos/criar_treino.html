@@ -1,0 +1,105 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Criar Treino
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Criar Treino Modelo
+    </h1>
+
+    <p>
+        Selecione os exercícios que farão parte do treino
+    </p>
+
+</div>
+
+<div class="card">
+
+    <form method="POST">
+
+        <label>
+            Nome do Treino
+        </label>
+
+        <input
+        type="text"
+        name="nome"
+        placeholder="Ex: Treino A - Peito"
+        required>
+
+        <label>
+            Descrição
+        </label>
+
+        <textarea
+        name="descricao"
+        placeholder="Descreva o objetivo deste treino"></textarea>
+
+        <label>
+            Exercícios
+        </label>
+
+        <div class="checkbox-container">
+
+            {% for exercicio in exercicios %}
+
+            <div class="checkbox-item">
+
+                <input
+                type="checkbox"
+                name="exercicios"
+                value="{{ exercicio.id }}">
+
+                <div>
+
+                    <strong>
+                        {{ exercicio.nome }}
+                    </strong>
+
+                    <br>
+
+                    <small>
+
+                        {{ exercicio.grupo_muscular }}
+                        •
+                        {{ exercicio.series_padrao }} séries
+                        •
+                        {{ exercicio.repeticoes_padrao }} reps
+                        •
+                        {{ exercicio.peso_padrao }} kg
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <button type="submit">
+
+            Salvar Treino
+
+        </button>
+
+    </form>
+
+    <a
+    href="/treinos"
+    class="voltar">
+
+        Cancelar
+
+    </a>
+
+</div>
+
+{% endblock %}
+

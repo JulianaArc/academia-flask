@@ -1,0 +1,118 @@
+{% extends 'base/base_aluno.html' %}
+
+{% block title %}
+Meus Treinos
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Meus Treinos
+    </h1>
+
+    <p>
+        Treinos adicionados à sua conta
+    </p>
+
+</div>
+
+<div class="page-actions">
+
+    <a
+    href="/dashboard-aluno"
+    class="btn-secondary">
+
+        ← Voltar ao Dashboard
+
+    </a>
+
+</div>
+
+{% if treinos|length == 0 %}
+
+<div class="card">
+
+    <h2>
+        Nenhum treino encontrado
+    </h2>
+
+    <p class="info">
+
+        Você ainda não adicionou nenhum treino.
+
+    </p>
+
+    <br>
+
+    <a
+    href="/treinos-academia"
+    class="btn">
+
+        Escolher Treino
+
+    </a>
+
+</div>
+
+{% endif %}
+
+{% for treino in treinos %}
+
+<div class="card treino-card">
+
+    <div class="treino-header">
+
+        <div>
+
+            <h2>
+
+                {{ treino.nome }}
+
+            </h2>
+
+            <p class="info">
+
+                Treino adicionado pela academia
+
+            </p>
+
+        </div>
+
+        <div class="badge">
+
+            {{ treino.exercicios|length }}
+            exercícios
+
+        </div>
+
+    </div>
+
+    <br>
+<div class="actions">
+
+    <a
+    href="/meu-treino/{{ treino.id }}"
+    class="btn">
+
+        Abrir Treino
+
+    </a>
+
+    <a
+    href="/excluir-treino/{{ treino.id }}"
+    class="btn-danger">
+
+        Excluir
+
+    </a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
+

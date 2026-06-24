@@ -1,0 +1,159 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Editar Plano
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Editar Plano
+    </h1>
+
+    <p>
+        Atualize as informações do plano
+    </p>
+
+</div>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <label>
+            Nome do Plano
+        </label>
+
+        <input
+            type="text"
+            name="nome"
+            value="{{ plano.nome }}"
+            required
+        >
+
+        <label>
+            Categoria
+        </label>
+
+        <select
+            name="categoria"
+            required
+        >
+
+            <option value="Básico"
+                {% if plano.categoria == 'Básico' %}
+                selected
+                {% endif %}
+            >
+                Básico
+            </option>
+
+            <option value="Semi Personal"
+                {% if plano.categoria == 'Semi Personal' %}
+                selected
+                {% endif %}
+            >
+                Semi Personal
+            </option>
+
+            <option value="Personal Training"
+                {% if plano.categoria == 'Personal Training' %}
+                selected
+                {% endif %}
+            >
+                Personal Training
+            </option>
+
+            <option value="Avulso"
+                {% if plano.categoria == 'Avulso' %}
+                selected
+                {% endif %}
+            >
+                Avulso
+            </option>
+
+        </select>
+
+        <label>
+            Horário
+        </label>
+
+        <input
+            type="text"
+            name="horario"
+            value="{{ plano.horario }}"
+            required
+        >
+
+        <label>
+            Valor
+        </label>
+
+        <input
+            type="number"
+            step="0.01"
+            min="0"
+            name="valor"
+            value="{{ plano.valor }}"
+            required
+        >
+
+        <label>
+            Benefícios
+        </label>
+
+        <textarea
+            name="beneficios"
+            required
+        >{{ plano.beneficios }}</textarea>
+
+        <label>
+            Status
+        </label>
+
+        <select
+            name="status"
+            required
+        >
+
+            <option value="Disponível"
+                {% if plano.status == 'Disponível' %}
+                selected
+                {% endif %}
+            >
+                Disponível
+            </option>
+
+            <option value="Indisponível"
+                {% if plano.status == 'Indisponível' %}
+                selected
+                {% endif %}
+            >
+                Indisponível
+            </option>
+
+        </select>
+
+        <button type="submit">
+
+            Salvar Alterações
+
+        </button>
+
+    </form>
+
+    <a
+        href="/planos"
+        class="voltar"
+    >
+
+        Cancelar
+
+    </a>
+
+</div>
+
+{% endblock %}
+

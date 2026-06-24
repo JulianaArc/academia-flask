@@ -1,0 +1,223 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Alunos Cadastrados
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Alunos Cadastrados
+    </h1>
+
+    <p>
+        Gerencie matrículas, planos e informações dos alunos
+    </p>
+
+</div>
+
+<!-- RESUMO -->
+
+<div class="stats">
+
+    <div class="stat-card">
+
+        <h2>{{ total }}</h2>
+
+        <p>Total de Alunos</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h2>{{ ativos }}</h2>
+
+        <p>Alunos Ativos</p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h2>{{ pendentes }}</h2>
+
+        <p>Pagamentos Pendentes</p>
+
+    </div>
+
+</div>
+
+<!-- PESQUISA -->
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="pesquisaAluno"
+        placeholder="Pesquisar aluno por nome..."
+    >
+
+</div>
+
+<!-- AÇÕES -->
+
+<div class="top">
+
+    <a
+        href="/alunos"
+        class="btn">
+
+        ← Voltar
+
+    </a>
+
+    <a
+        href="/cadastrar-aluno"
+        class="btn">
+
+        + Novo Aluno
+
+    </a>
+
+</div>
+
+<!-- TABELA -->
+
+<div class="card">
+
+    <table class="tabela">
+
+        <thead>
+
+            <tr>
+
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Plano</th>
+                <th>Status</th>
+                <th>Ações</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="tabelaAlunos">
+
+            {% for aluno in alunos %}
+
+            <tr>
+
+                <td>{{ aluno.nome }}</td>
+
+                <td>{{ aluno.cpf }}</td>
+
+                <td>{{ aluno.telefone }}</td>
+
+                <td>
+
+                    {% if aluno.plano %}
+                        {{ aluno.plano.nome }}
+                    {% else %}
+                        Sem plano
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if aluno.ativo %}
+
+                        <span class="status-ativo">
+                            Ativo
+                        </span>
+
+                    {% else %}
+
+                        <span class="status-pendente">
+                            Pendente
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    <div class="actions">
+
+                        <a
+                            href="/editar-aluno/{{ aluno.id }}"
+                            class="btn edit">
+
+                            Editar
+
+                        </a>
+
+                        <a
+                            href="/deletar-aluno/{{ aluno.id }}"
+                            class="btn delete">
+
+                            Excluir
+
+                        </a>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+
+const pesquisa =
+document.getElementById(
+'pesquisaAluno'
+);
+
+pesquisa.addEventListener(
+'keyup',
+function(){
+
+let valor =
+this.value.toLowerCase();
+
+let linhas =
+document.querySelectorAll(
+'#tabelaAlunos tr'
+);
+
+linhas.forEach(
+linha => {
+
+let texto =
+linha.innerText.toLowerCase();
+
+linha.style.display =
+texto.includes(valor)
+? ''
+: 'none';
+
+}
+);
+
+}
+);
+
+</script>
+
+{% endblock %}
+

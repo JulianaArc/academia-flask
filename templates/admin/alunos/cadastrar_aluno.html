@@ -1,0 +1,118 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Cadastrar Aluno
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Cadastrar Aluno
+    </h1>
+
+    <p>
+        Cadastre um novo aluno no sistema
+    </p>
+
+</div>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <label>
+            Nome do aluno
+        </label>
+
+        <input
+            type="text"
+            name="nome"
+            placeholder="Digite o nome completo"
+            required
+        >
+
+        <label>
+            CPF
+        </label>
+
+        <input
+            type="text"
+            name="cpf"
+            placeholder="Digite o CPF"
+            required
+        >
+
+        <label>
+            Telefone
+        </label>
+
+        <input
+            type="text"
+            name="telefone"
+            placeholder="Digite o telefone"
+            required
+        >
+
+        <label>
+            Senha de acesso
+        </label>
+
+        <input
+            type="password"
+            name="senha"
+            placeholder="Crie uma senha"
+            required
+        >
+
+        <label>
+            Plano do aluno
+        </label>
+
+        <select
+            name="plano_id"
+            required
+        >
+
+            <option value="">
+                Selecione um plano
+            </option>
+
+            {% for plano in planos %}
+
+            <option
+                value="{{ plano.id }}"
+            >
+
+                {{ plano.nome }}
+                •
+                R$ {{ plano.valor }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <button type="submit">
+
+            Cadastrar Aluno
+
+        </button>
+
+    </form>
+
+    <a
+        href="/alunos"
+        class="voltar"
+    >
+
+        Cancelar
+
+    </a>
+
+</div>
+
+{% endblock %}
+

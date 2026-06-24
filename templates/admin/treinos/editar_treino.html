@@ -1,0 +1,116 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Editar Treino
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+
+        Editar Treino
+
+    </h1>
+
+    <p>
+
+        Atualize os exercícios do treino
+
+    </p>
+
+</div>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <label>
+
+            Nome
+
+        </label>
+
+        <input
+        type="text"
+        name="nome"
+        value="{{ treino.nome }}"
+        required>
+
+        <label>
+
+            Descrição
+
+        </label>
+
+        <textarea
+        name="descricao">{{ treino.descricao }}</textarea>
+
+        <label>
+
+            Exercícios
+
+        </label>
+
+        <div class="checkbox-container">
+
+            {% for exercicio in exercicios %}
+
+            <div class="checkbox-item">
+
+                <input
+                type="checkbox"
+                name="exercicios"
+                value="{{ exercicio.id }}"
+
+                {% if exercicio.id in selecionados %}
+                checked
+                {% endif %}
+                >
+
+                <div>
+
+                    <strong>
+
+                        {{ exercicio.nome }}
+
+                    </strong>
+
+                    <br>
+
+                    <small>
+
+                        {{ exercicio.grupo_muscular }}
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+      <button type="submit">
+
+    Salvar Alterações
+
+</button>
+
+<a
+href="/visualizar-treino/{{ treino.id }}"
+class="voltar">
+
+    Cancelar
+
+</a>
+
+</form>
+
+</div>
+
+{% endblock %}
+
+

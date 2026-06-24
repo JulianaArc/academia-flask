@@ -1,0 +1,132 @@
+{% extends 'base/base_aluno.html' %}
+
+{% block title %}
+Dashboard Aluno
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+
+    <h1>
+        Olá, {{ usuario.nome.title() }} 👋
+    </h1>
+
+    <p>
+        Bem-vindo(a) novamente.
+    </p>
+
+</div>
+
+<div class="card">
+    <h2>Plano Atual</h2>
+    <br>
+
+    <div class="plano-nome">
+        {% if usuario.plano %}
+            {{ usuario.plano.nome }}
+        {% else %}
+            Nenhum plano vinculado
+        {% endif %}
+    </div>
+
+    {% if usuario.plano %}
+        <div class="plano-preco">
+            R$ {{ "%.2f"|format(usuario.plano.valor) }}/mês
+        </div>
+    {% endif %}
+
+    <br>
+
+    {% if usuario.status_pagamento == 'Pago' %}
+        <div class="plano-status">
+            ✅ Plano Ativo
+        </div>
+    {% else %}
+        <div class="status-pendente">
+            🔴 Pagamento {{ usuario.status_pagamento }}
+        </div>
+    {% endif %}
+
+    <br>
+
+    <p class="info">
+        <strong>Próximo vencimento:</strong>
+        {% if usuario.proximo_vencimento %}
+            {{ usuario.proximo_vencimento.strftime('%d/%m/%Y') }}
+        {% else %}
+            Não definido
+        {% endif %}
+    </p>
+
+    <p class="info">
+        <strong>Matrícula:</strong>
+        {% if usuario.data_matricula %}
+            {{ usuario.data_matricula.strftime('%d/%m/%Y') }}
+        {% else %}
+            Não definida
+        {% endif %}
+    </p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <h2>0</h2>
+        <p>Treinos</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>0</h2>
+        <p>Exercícios</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>0</h2>
+        <p>Sequência</p>
+    </div>
+</div>
+
+<div class="page-header">
+
+    <h1>
+        Área do Aluno
+    </h1>
+
+    <p>
+        Acompanhe seus treinos e evolução
+    </p>
+
+</div>
+
+<div class="dashboard-grid">
+    <div class="module-card">
+        <h2>Meus Treinos</h2>
+        <p>Visualize e gerencie seus treinos</p>
+        <a href="/meus-treinos" class="btn">Ver Treinos</a>
+    </div>
+
+    <div class="module-card">
+        <h2>Treinos da Academia</h2>
+        <p>Escolha treinos prontos dos instrutores</p>
+        <a href="/treinos-academia" class="btn">Explorar</a>
+    </div>
+
+    <div class="module-card">
+        <h2>Treino Personalizado</h2>
+        <p>Monte seu próprio treino</p>
+        <a href="#" class="btn">Criar</a>
+    </div>
+
+    <div class="module-card">
+        <h2>Meu Plano</h2>
+        <p>Consulte detalhes da assinatura</p>
+        <a href="#" class="btn">Detalhes</a>
+    </div>
+
+    <div class="module-card">
+        <h2>Meu Perfil</h2>
+        <p>Dados pessoais e configurações</p>
+        <a href="#" class="btn">Gerenciar</a>
+    </div>
+</div>
+{% endblock %}
+

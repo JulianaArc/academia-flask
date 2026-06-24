@@ -1,0 +1,115 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Cadastrar Exercício
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Cadastrar Exercício
+    </h1>
+
+    <p>
+        Adicione um novo exercício ao banco da academia
+    </p>
+
+</div>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <label>
+            Nome do Exercício
+        </label>
+
+        <input
+            type="text"
+            name="nome"
+            placeholder="Ex: Supino Reto"
+            required
+        >
+
+        <label>
+            Grupo Muscular
+        </label>
+
+        <input
+            type="text"
+            name="grupo_muscular"
+            placeholder="Ex: Peitoral"
+            required
+        >
+
+        <label>
+            Descrição
+        </label>
+
+        <textarea
+            name="descricao"
+            placeholder="Descreva a execução do exercício"
+            required
+        ></textarea>
+
+        <label>
+            Peso Padrão (kg)
+        </label>
+
+        <input
+            type="number"
+            step="0.1"
+            min="0"
+            name="peso_padrao"
+            placeholder="Ex: 20"
+            required
+        >
+
+        <label>
+            Séries Padrão
+        </label>
+
+        <input
+            type="number"
+            min="1"
+            name="series_padrao"
+            placeholder="Ex: 4"
+            required
+        >
+
+        <label>
+            Repetições Padrão
+        </label>
+
+        <input
+            type="number"
+            min="1"
+            name="repeticoes_padrao"
+            placeholder="Ex: 12"
+            required
+        >
+
+        <button type="submit">
+
+            Cadastrar Exercício
+
+        </button>
+
+    </form>
+
+    <a
+        href="/exercicios"
+        class="voltar"
+    >
+
+        Cancelar
+
+    </a>
+
+</div>
+
+{% endblock %}
+
+

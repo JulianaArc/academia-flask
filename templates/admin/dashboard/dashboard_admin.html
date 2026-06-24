@@ -1,0 +1,116 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Painel Administrativo
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Painel Administrativo
+    </h1>
+
+    <p>
+        Gerencie sua academia de forma centralizada
+    </p>
+
+</div>
+
+<div class="dashboard-grid">
+
+    <div class="module-card">
+
+        <h2>Alunos</h2>
+
+        <p>
+            Cadastro e gerenciamento dos alunos
+        </p>
+
+        <a
+        href="/alunos"
+        class="btn">
+
+            Abrir módulo
+
+        </a>
+
+    </div>
+
+    <div class="module-card">
+
+        <h2>Planos</h2>
+
+        <p>
+            Crie e gerencie planos da academia
+        </p>
+
+        <a
+        href="/planos"
+        class="btn">
+
+            Abrir módulo
+
+        </a>
+
+    </div>
+
+    <div class="module-card">
+
+        <h2>Exercícios</h2>
+
+        <p>
+            Cadastro dos exercícios disponíveis
+        </p>
+
+        <a
+        href="/exercicios"
+        class="btn">
+
+            Abrir módulo
+
+        </a>
+
+    </div>
+
+    <div class="module-card">
+
+        <h2>Treinos Modelo</h2>
+
+        <p>
+            Monte treinos padrão da academia
+        </p>
+
+        <a
+        href="/treinos"
+        class="btn">
+
+            Abrir módulo
+
+        </a>
+
+    </div>
+
+    <div class="module-card">
+
+        <h2>Pagamentos</h2>
+
+        <p>
+            Controle financeiro e mensalidades
+        </p>
+
+        <a
+        href="#"
+        class="btn">
+
+            Abrir módulo
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

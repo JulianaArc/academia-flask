@@ -1,0 +1,112 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+{{ treino.nome }}
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="top">
+
+        <div>
+
+            <h1>{{ treino.nome }}</h1>
+
+            <p class="info">
+
+                {{ treino.descricao }}
+
+            </p>
+
+        </div>
+
+        <div class="actions">
+
+            <a
+            href="/treinos"
+            class="btn">
+
+                ← Voltar
+
+            </a>
+
+            <a
+            href="/editar-treino/{{ treino.id }}"
+            class="btn edit">
+
+                Editar Treino
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <h2>
+
+        Exercícios do Treino
+
+    </h2>
+
+    <br>
+
+    <div class="dashboard-grid">
+
+        {% for item in treino.itens %}
+
+        <div class="exercise-card">
+
+            <h3>
+
+                {{ item.exercicio.nome }}
+
+            </h3>
+
+            <p>
+
+                {{ item.exercicio.grupo_muscular }}
+
+            </p>
+
+            <div class="exercise-info">
+
+                <span>
+
+                    {{ item.exercicio.series_padrao }}
+                    séries
+
+                </span>
+
+                <span>
+
+                    {{ item.exercicio.repeticoes_padrao }}
+                    reps
+
+                </span>
+
+                <span>
+
+                    {{ item.exercicio.peso_padrao }}
+                    kg
+
+                </span>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
+

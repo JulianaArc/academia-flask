@@ -1,0 +1,172 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Planos
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Planos da Academia
+    </h1>
+
+    <p>
+        Gerencie planos, categorias e disponibilidade
+    </p>
+
+</div>
+
+<div class="top">
+
+    <a
+        href="/dashboard-admin"
+        class="btn"
+    >
+        ← Voltar
+    </a>
+
+    <a
+        href="/cadastrar-plano"
+        class="btn"
+    >
+        + Novo Plano
+    </a>
+
+</div>
+
+{% if planos|length == 0 %}
+
+<div class="empty">
+
+    Nenhum plano cadastrado.
+
+</div>
+
+{% endif %}
+
+{% for plano in planos %}
+
+<div class="card">
+
+    <div class="card-header">
+
+        <h2>
+
+            {{ plano.nome }}
+
+        </h2>
+
+    </div>
+
+    <p class="info">
+
+        <strong>Categoria:</strong>
+
+        {{ plano.categoria }}
+
+    </p>
+
+    <p class="info">
+
+        <strong>Horário:</strong>
+
+        {{ plano.horario }}
+
+    </p>
+
+    <p class="info">
+
+        <strong>Valor:</strong>
+
+        R$ {{ "%.2f"|format(plano.valor) }}
+
+    </p>
+
+    <p class="info">
+
+        <strong>Status:</strong>
+
+        {{ plano.status }}
+
+    </p>
+
+    <p class="info">
+
+        <strong>Alunos vinculados:</strong>
+
+        {{ plano.usuarios|length }}
+
+    </p>
+
+    <div class="beneficios">
+
+        <strong>
+            Benefícios
+        </strong>
+
+        <ul class="lista-beneficios">
+
+            {% for beneficio in plano.beneficios.split('\n') %}
+
+                {% if beneficio.strip() %}
+
+                <li>
+
+                    {{ beneficio }}
+
+                </li>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <div class="actions">
+
+        <a
+            href="/editar-plano/{{ plano.id }}"
+            class="btn edit"
+        >
+            Editar
+        </a>
+
+        {% if plano.status == 'Disponível' %}
+
+        <a
+            href="/indisponibilizar-plano/{{ plano.id }}"
+            class="btn warning"
+        >
+            Indisponibilizar
+        </a>
+
+        {% else %}
+
+        <a
+            href="/disponibilizar-plano/{{ plano.id }}"
+            class="btn success"
+        >
+            Disponibilizar
+        </a>
+
+        {% endif %}
+
+        <a
+            href="/deletar-plano/{{ plano.id }}"
+            class="btn delete"
+        >
+            Excluir
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
+

@@ -1,0 +1,109 @@
+{% extends 'base/base_admin.html' %}
+
+{% block title %}
+Editar Aluno
+{% endblock %}
+
+{% block content %}
+
+<div class="topbar">
+
+    <h1>
+        Editar Aluno
+    </h1>
+
+    <p>
+        Atualize as informações cadastrais do aluno
+    </p>
+
+</div>
+
+<div class="form-container">
+
+    <form method="POST">
+
+        <label>
+            Nome
+        </label>
+
+        <input
+            type="text"
+            name="nome"
+            value="{{ aluno.nome }}"
+            required
+        >
+
+        <label>
+            CPF
+        </label>
+
+        <input
+            type="text"
+            name="cpf"
+            value="{{ aluno.cpf }}"
+            required
+        >
+
+        <label>
+            Telefone
+        </label>
+
+        <input
+            type="text"
+            name="telefone"
+            value="{{ aluno.telefone }}"
+            required
+        >
+
+        <label>
+            Plano
+        </label>
+
+        <select
+            name="plano_id"
+            required
+        >
+
+            {% for plano in planos %}
+
+            <option
+                value="{{ plano.id }}"
+                {% if aluno.plano_id == plano.id %}
+                selected
+                {% endif %}
+            >
+
+                {{ plano.nome }}
+
+                •
+
+                R$ {{ plano.valor }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <button type="submit">
+
+            Salvar Alterações
+
+        </button>
+
+    </form>
+
+    <a
+        href="/listar-alunos"
+        class="voltar"
+    >
+
+        Cancelar
+
+    </a>
+
+</div>
+
+{% endblock %}
+
+
